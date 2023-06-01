@@ -1,5 +1,9 @@
+import ContentCard from "../../../components/ContentCard";
+
 const Plans = () => {
-  return null;
+  return <ContentCard title="Planes">
+
+  </ContentCard>;
 };
 
 export default Plans;
