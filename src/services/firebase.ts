@@ -16,4 +16,4 @@ export const performance = getPerformance(app);
 export const storage = getStorage(app);
 
 
-export const signInWithGoogle = signInWithPopup(auth, new GoogleAuthProvider())
+export const signInWithGoogle = () => signInWithPopup(auth, new GoogleAuthProvider())

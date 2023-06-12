@@ -8,6 +8,10 @@ export const FIREBASE_CONFIG = {
     appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
+export const PUBLIC_URL = process.env.PUBLIC_URL;
+
+console.log(FIREBASE_CONFIG)
+
 // throw error if any of the env variables are missing
 Object.entries(FIREBASE_CONFIG).forEach(([key, value]) => {
     if (!value) throw new Error(`Missing env.${key}`);

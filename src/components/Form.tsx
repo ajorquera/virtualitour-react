@@ -1,23 +1,58 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import { Box, Button, MenuItem, Select, TextField } from '@mui/material';
+import React, { FC } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
-const Form = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+export interface FormField {
+    type: 'text' | 'select';
+    name: string;
+    label: string;
+    options?: string[];
+}
+
+export interface Props {
+    fields: FormField[];
+}
+
+const Form: FC<Props> = ({ fields }) => {
+    const { control, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = (data: any) => console.log(data);
     console.log(errors);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" placeholder="Name" {...register("Name", { maxLength: 80 })} />
-            <select {...register("Industry", { required: true })}>
-                <option value="Bienes raices">Bienes raices</option>
-                <option value=" diseno"> diseno</option>
-                <option value=" fotografia"> fotografia</option>
-            </select>
-            <input type="text" placeholder="Email" {...register("Email", { required: true, pattern: /^\S+@\S+$/i })} />
+        <Box component="form" sx={
+            {
+                '& .MuiTextField-root': { m: 1, width: '25ch' },
+            }
+        } onSubmit={handleSubmit(onSubmit)}>
+            {fields.map(field => {
+                let Component: any = null;
+                switch (field.type) {
+                    case 'text':
+                        Component = (props: any) => <TextField {...props} />;
+                        break;
+                    case 'select':
+                        Component = (props: any) => (<TextField select {...props}>
+                            {field.options?.map(option => (
+                                <MenuItem key={option} value={option}>{option}</MenuItem>
+                            ))}
+                        </TextField>);
+                        break;
+                }
 
-            <input type="submit" />
-        </form>
+                return (
+                    <div key={field.name}>
+                        <Controller
+                            name={field.name}
+                            control={control}
+                            render={({ field: innerField }) => <Component {...field} {...innerField} />}
+                        />
+
+                    </div>
+                );
+            })}
+
+            <Button size='large' variant='contained' type="submit">Save</Button>
+        </Box>
     )
 }
 

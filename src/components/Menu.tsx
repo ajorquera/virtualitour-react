@@ -3,14 +3,23 @@
 // Path: src/components/Menu.tsx
 
 import { FC, useState } from "react";
-import { Divider, List, ListItem, ListItemIcon, ListItemText, Menu as MenuMui, MenuItem, Typography, Button } from "@mui/material";
+import { ListItemIcon, ListItemText, Menu as MenuMui, MenuItem, Avatar, IconButton, Divider } from "@mui/material";
+import Link from "./Link";
+import { redirect } from "react-router-dom";
 
 
-export interface Props {
-  [s: string]: any
+interface MenuLink {
+  label: string;
+  href: string;
+  icon?: any;
+  divider?: boolean;
 }
 
-const Menu: FC<Props> = ({ menu, links }) => {
+export interface Props {
+  links?: MenuLink[]
+}
+
+const Menu: FC<Props> = ({ links }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -20,19 +29,21 @@ const Menu: FC<Props> = ({ menu, links }) => {
     setAnchorEl(null);
   };
 
+  const onClickLink = (link: MenuLink) => () => {
+    redirect(link.href);
+    handleClose();
+  }
+
   return <>
-    <Button
+    <IconButton
       id="demo-customized-button"
       aria-controls={open ? 'demo-customized-menu' : undefined}
       aria-haspopup="true"
       aria-expanded={open ? 'true' : undefined}
-      variant="contained"
-      disableElevation
       onClick={handleClick}
-
     >
-      Options
-    </Button>
+      <Avatar>AJ</Avatar>
+    </IconButton>
 
 
     <MenuMui
@@ -70,31 +81,21 @@ const Menu: FC<Props> = ({ menu, links }) => {
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
-      <MenuItem onClick={handleClose}>
-        Profile
-      </MenuItem>
-      <MenuItem onClick={handleClose}>
-        My account
-      </MenuItem>
-      <Divider />
-      <MenuItem onClick={handleClose}>
-        <ListItemIcon>
-          Smll
-        </ListItemIcon>
-        Add another account
-      </MenuItem>
-      <MenuItem onClick={handleClose}>
-        <ListItemIcon>
-          Settings
-        </ListItemIcon>
-        Settings
-      </MenuItem>
-      <MenuItem onClick={handleClose}>
-        <ListItemIcon>
-          Logout
-        </ListItemIcon>
-        Logout
-      </MenuItem>
+      {links?.map((link, index) => (
+        <>
+          {link.divider && <Divider />}
+
+          <MenuItem href={link.href} key={index} onClick={onClickLink(link)}>
+            {link?.icon && <ListItemIcon>
+              <link.icon />
+            </ListItemIcon>}
+            <ListItemText>
+              {link.label}
+            </ListItemText>
+          </MenuItem>
+        </>
+      ))}
+
     </MenuMui>
   </>
 

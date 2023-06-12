@@ -10,10 +10,19 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import Theme from '../Theme';
 import { Container } from '@mui/material';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import PermMediaIcon from '@mui/icons-material/PermMedia';
+import Logout from '@mui/icons-material/Logout';
+import Settings from '@mui/icons-material/Settings';
+
 
 const menu: MenuProps = {
-  label: 'Menu',
-  image: '',
+  links: [
+    { label: 'Crear tour', href: '/tours/create', icon: AddCircleIcon },
+    { label: 'Mis tours', href: '/tours', icon: PermMediaIcon },
+    { label: 'Ajustes', href: '/settings', icon: Settings },
+    { label: 'Salir', href: '/logout', icon: Logout, divider: true },
+  ]
 };
 
 interface LinkProps {
@@ -28,7 +37,7 @@ function App() {
   return (
     <div className='App'>
       <Theme>
-        <Header title='Virtualitour' logo='./logo.svg' subtitle='' links={links} menu={menu} />
+        <Header title='Virtualitour' logo='./logo.svg' subtitle='Queremos darle una vision 360 a tu mundo' links={links} menu={menu} />
         <Container>
           <Routes />
         </Container>

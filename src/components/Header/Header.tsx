@@ -1,6 +1,7 @@
-import { AppBar, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 import { FC } from 'react';
-import { LinkProps, Menu, MenuProps } from '..';
+import { Menu, MenuProps } from '..';
+import { PUBLIC_URL } from '../../env';
 
 export interface Props {
   title: string;
@@ -11,10 +12,18 @@ export interface Props {
 }
 
 const Header: FC<Props> = ({ title, ...props }) => {
+
+
   return (
     <AppBar position='sticky' color='default' {...props}>
       <Toolbar>
-        <Typography component="h1" sx={{ flexGrow: 1, textAlign: 'left' }}  >{title}</Typography>
+        <Box p={1}>
+          <img src={PUBLIC_URL + '/images/logo.png'} />
+        </Box>
+        <Box sx={{ flexGrow: 1, textAlign: 'left' }}>
+          <Typography variant="h5"  >{title}</Typography>
+          <Typography fontStyle="italic" variant="subtitle1" >"{props.subtitle}"</Typography>
+        </Box>
 
         <Menu {...props.menu} />
       </Toolbar>
