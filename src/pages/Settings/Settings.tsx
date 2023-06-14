@@ -1,11 +1,11 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { Plans, Profile } from './pages';
 import { Alert, Box, Grid } from '@mui/material';
 import MenuCard from '../../components/MenuCard';
 
 
 const menu = {
-  title: 'Configuracion',
+  title: 'Ajustes',
   subItems: [
     { label: 'Perfil', path: '/settings/profile' },
     { label: 'Planes', path: '/settings/plans' }
@@ -28,11 +28,7 @@ const Settings = () => {
         <Grid item xs={12} md={9}>
 
 
-          <Routes>
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/plans' element={<Plans />} />
-            <Route path='*' element={<Navigate to='/settings/profile' />} />
-          </Routes>
+          <Outlet />
         </Grid>
       </Grid>
     </Box>

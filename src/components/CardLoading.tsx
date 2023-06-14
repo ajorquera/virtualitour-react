@@ -9,11 +9,21 @@ const CardLoading = () => {
         <Card>
             <CardContent>
                 <Typography variant="h3" component="h3" textAlign="left">
-                    <Skeleton />
+                    <Skeleton variant="rectangular" width={300} animation="wave" />
                 </Typography>
-                <Skeleton />
-                <Skeleton />
-                <Skeleton />
+
+                <Typography sx={{ mt: 1 }} variant="body1" component="p" textAlign="left">
+                    <Skeleton variant="rounded" animation={false} />
+                </Typography>
+
+                <Typography sx={{ mt: 1 }} variant="body1" component="p" textAlign="left">
+                    <Skeleton variant="rounded" width={300} animation={false} />
+                </Typography>
+
+
+
+
+
             </CardContent>
         </Card>
     )

@@ -26,8 +26,8 @@ const MenuCard: FC<Props> = ({ menu }) => (
                 </List>
                 <Divider />
                 <List>
-                    {menu.subItems.map((subItem) => (
-                        <ListItem>
+                    {menu.subItems.map((subItem, i) => (
+                        <ListItem key={i}>
                             <ListItemButton>
                                 <ListItemButton component={Link as any} href={subItem.path}>
                                     <ListItemText primary={subItem.label} />

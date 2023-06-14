@@ -27,7 +27,7 @@ const fields: FormField[] = [
 
 const Profile = () => {
   return (
-    <ContentCard title='Perfil'>
+    <ContentCard title='Perfil' loading>
       <Typography variant='body1' textAlign="left">
         Aqui puedes modificar tus datos personales
       </Typography>

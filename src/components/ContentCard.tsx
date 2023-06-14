@@ -13,7 +13,7 @@ export interface Props {
 }
 
 const ContentCard: FC<Props> = ({ title, children, loading }) => {
-    if (loading) <CardLoading />
+    if (loading) return <CardLoading />
 
     return (
 

@@ -1,6 +1,6 @@
 import { DocumentReference, DocumentSnapshot, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore/lite";
 import { auth, firestore } from "./firebase";
-import { User, onAuthStateChanged } from "firebase/auth";
+import { User, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 const getOnAuthStateChangedPromise = () => {
     return new Promise<User>((resolve, reject) => {
@@ -64,5 +64,13 @@ export const getMyTours = async () => {
 
     return processQuery(firestoreQuery);
 
+};
+
+export const signInWithEmailPassword = async (email: string, password: string) => {
+    return signInWithEmailAndPassword(auth, email, password);
+};
+
+export const signOutUser = async () => {
+    return signOut(auth);
 };
 

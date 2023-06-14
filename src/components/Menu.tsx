@@ -5,7 +5,7 @@
 import { FC, useState } from "react";
 import { ListItemIcon, ListItemText, Menu as MenuMui, MenuItem, Avatar, IconButton, Divider } from "@mui/material";
 import Link from "./Link";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 
 
 interface MenuLink {
@@ -21,6 +21,7 @@ export interface Props {
 
 const Menu: FC<Props> = ({ links }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -30,7 +31,8 @@ const Menu: FC<Props> = ({ links }) => {
   };
 
   const onClickLink = (link: MenuLink) => () => {
-    redirect(link.href);
+    navigate(link.href);
+    console.log(link.href)
     handleClose();
   }
 

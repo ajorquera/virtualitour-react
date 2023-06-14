@@ -12,8 +12,18 @@ import Theme from '../Theme';
 import { Container } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import PermMediaIcon from '@mui/icons-material/PermMedia';
-import Logout from '@mui/icons-material/Logout';
-import Settings from '@mui/icons-material/Settings';
+
+
+import { BrowserRouter, Routes as RouterRoutes, Route, Navigate } from 'react-router-dom';
+import { PUBLIC_URL } from '../env';
+import DashboardLayout, { AccessLayout } from '../components/Layout';
+import { Plans, Profile } from '../pages/Settings/pages';
+import Settings from '../pages/Settings/Settings';
+import { Login } from '../pages/Login';
+import { AuthProvider } from '../providers/AuthProvider';
+import { signOutUser } from '../services/firebaseApi';
+import Logout from '../components/Logout';
+
 
 
 const menu: MenuProps = {
@@ -37,11 +47,26 @@ function App() {
   return (
     <div className='App'>
       <Theme>
-        <Header title='Virtualitour' logo='./logo.svg' subtitle='Queremos darle una vision 360 a tu mundo' links={links} menu={menu} />
-        <Container>
-          <Routes />
-        </Container>
-        <Footer />
+        <AuthProvider>
+          <BrowserRouter basename={PUBLIC_URL}>
+            <RouterRoutes>
+
+              <Route path="logout" element={<Logout />} />
+              <Route path='/*' element={<AccessLayout />} >
+                <Route path='login' element={<Login />} />
+              </Route>
+              <Route element={<DashboardLayout />}>
+                <Route index element={<Navigate to="/settings" />} />
+                <Route path="/settings/*" element={<Settings />} >
+                  <Route path='profile' element={<Profile />} />
+                  <Route path='plans' element={<Plans />} />
+                  <Route index element={<Navigate to='/settings/profile' />} />
+                </Route>
+              </Route>
+            </RouterRoutes>
+          </BrowserRouter>
+
+        </AuthProvider>
       </Theme>
     </div>
   );

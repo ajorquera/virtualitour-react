@@ -1,11 +1,22 @@
-import { Route, RouteProps, redirect } from "react-router-dom";
+import { Outlet, Route, RouteProps, redirect } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
-import { FC } from "react";
+import { FC, useCallback } from "react";
 
-export const ProtectedRoute: FC<RouteProps> = (props) => {
-    const { user } = useAuth();
+interface Props {
+    path: string;
+    children: React.ReactNode;
+}
 
-    return user ? <Route {...props} /> : redirect("/login") as any;
+export const AuthRoute: FC<Props> = ({ path, children }) => {
+    const { user, isLoading } = useAuth();
+
+    const loader = useCallback(() => {
+        if (!isLoading && !user) {
+            return redirect('/login');
+        }
+    }, [user]);
+
+    return <Route loader={loader} path={path}>{children}</Route>;
 };
 
-export default ProtectedRoute;
+export default AuthRoute;

@@ -1,7 +1,9 @@
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 import { FC } from 'react';
-import { Menu, MenuProps } from '..';
+
 import { PUBLIC_URL } from '../../env';
+import Menu, { Props as MenuProps } from '../Menu';
+
 
 export interface Props {
   title: string;
