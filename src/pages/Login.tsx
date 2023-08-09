@@ -1,8 +1,11 @@
 import React, { useCallback, useState } from "react";
 import { useAuth } from "../providers/AuthProvider";
 import { useParams } from "react-router-dom";
-import { Box, Button, TextField, Typography } from "@mui/material";
+
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import Text from "../components/Text";
+import Box from "../components/Box";
+import Button from "../components/Button/Button";
 
 interface IFormInput {
     email: string
@@ -47,7 +50,7 @@ export const Login = () => {
 
     return (
         <>
-            <Typography textAlign="center" variant="h2">Login</Typography>
+            <Text textAlign="center" variant="h2">Login</Text>
 
             <div>
                 <form onSubmit={handleSubmit(onLogin)}>
@@ -57,12 +60,12 @@ export const Login = () => {
 
                                 name={field.name}
                                 control={control}
-                                render={({ field: innerField }) => <TextField fullWidth {...field} {...innerField} />}
+                                render={({ field: innerField }) => <input fullWidth {...field} {...innerField} />}
                             />
                         </Box>
                     )}
 
-                    <Button fullWidth variant="contained" type="submit">LOGIN</Button>
+                    <Button fullWidth type="submit">LOGIN</Button>
                 </form>
             </div>
         </>

@@ -8,7 +8,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Navigate, Outlet, redirect } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
-import Card from "./Card";
+import Card from "./Card/Card";
 
 const menu: any = {
     links: [

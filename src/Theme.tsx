@@ -1,32 +1,23 @@
-import { ThemeProvider, createTheme } from '@mui/material';
-import { FC, PropsWithChildren } from 'react';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#0050B3',
-      light: '#0067e6',
-    },
-    secondary: {
-      main: '#FFC700',
-    },
-    background: {
-      default: '#fff',
-    },
-    info: {
-      main: '#2196f3',
-    },
-    success: {
-      main: '#4caf50',
-    },
-    warning: {
-      main: '#ff9800',
-    },
-    error: {
-      main: '#f44336',
-    },
-  },
-});
+import { FC, PropsWithChildren } from 'react';
+import { ThemeProvider } from 'styled-components';
+
+const theme = {
+  colors: {
+    primary: '#0070f3',
+    'primary-dark': '#0000ff',
+    secondary: '#ff0000',
+    white: '#ffffff',
+    black: '#000000',
+    surface: '#ffffff',
+    disabled: '#f5f5f5',
+    error: '#ff0000',
+
+    success: '#00ff00',
+    warning: '#ffff00',
+    info: '#0000ff',
+  }
+}
 
 const Theme: FC<PropsWithChildren> = ({ children }) => {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;

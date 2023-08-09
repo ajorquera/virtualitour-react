@@ -1,7 +1,7 @@
 import { Divider, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { FC } from "react";
 import Link from "./Link";
-import Card from "./Card";
+import Card from "./Card/Card";
 
 interface MenuItem {
     label: string;
