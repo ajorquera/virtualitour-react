@@ -1,36 +1,34 @@
 import { FC, useEffect } from "react";
 import Header from "./Header/Header";
-import { Box, Container } from "@mui/material";
+
 import Footer from "./Footer";
-import FiberNewIcon from '@mui/icons-material/FiberNew';
-import ImageIcon from '@mui/icons-material/Image';
-import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
+
 import { Navigate, Outlet, redirect } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
 import Card from "./Card/Card";
+import Box, { Flex } from "./Box";
 
 const menu: any = {
     links: [
         {
             label: 'Crear',
             href: '/',
-            icon: FiberNewIcon
+
         },
         {
             label: 'Tours',
             href: '/',
-            icon: ImageIcon
+
         },
         {
             label: 'Ajustes',
             href: '/settings',
-            icon: SettingsIcon
+
         },
         {
             label: 'Salir',
             href: '/logout',
-            icon: LogoutIcon,
+
             divider: true
         }
     ],
@@ -58,9 +56,9 @@ const DashboardLayout: FC<{}> = () => {
             links={links}
             menu={menu}
         />
-        <Container>
-            <Outlet />
-        </Container>
+
+        <Outlet />
+
         <Footer />
     </>)
 };
@@ -71,11 +69,11 @@ export const AccessLayout = () => {
     if (!isLoading && user) return <Navigate to='/' />
 
     return (
-        <Box sx={{ height: '100vh' }} display="flex" alignItems="center" justifyContent="center">
-            <Card sx={{ width: 500 }}>
+        <Flex justifyContent="center">
+            <Card>
                 <Outlet />
             </Card>
-        </Box>
+        </Flex>
     )
 }
 

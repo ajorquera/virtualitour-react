@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ColorProps, SpaceProps, TypographyProps, VariantArgs, color, compose, space, typography, variant } from "styled-system";
 
 export interface Props extends TypographyProps, ColorProps, SpaceProps {
-    variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'subtitle1' | 'subtitle2' | 'caption' | 'overline' | 'button';
+    variant?: 'h1' | 'h2' | 'h3' | 'h6' | 'body' | 'subtitle' | 'small' | 'link';
 }
 const Text = styled.span<Props>(compose(typography, color, space), variant({
     variants: {

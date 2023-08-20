@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { ifProp, theme } from "styled-tools";
+import { ifProp, prop, theme, withProp } from "styled-tools";
 import { color, buttonStyle, compose, ColorProps, variant } from 'styled-system';
 import { ButtonHTMLAttributes } from "react";
+import { darken } from "polished";
 
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -9,6 +10,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'primary' | 'secondary' | 'text';
     bg?: string;
     color?: string;
+    circular?: boolean;
 }
 
 const Button = styled.button<Props>`
@@ -26,6 +28,11 @@ const Button = styled.button<Props>`
     cursor: pointer;
     
     ${ifProp('fullWidth', 'width: 100%;')}
+
+    ${ifProp('circular', `
+        border-radius: 50%;
+        padding: 20px 8px;
+    `)}
     
     ${ifProp('bg', props => `
         background-color: ${theme('colors.' + props.bg, props.bg)(props)};
@@ -37,6 +44,10 @@ const Button = styled.button<Props>`
     
     &:active {
         box-shadow: .2px .2px 0 0 inset black;
+    }
+
+    &:hover {
+        background-color: ${darken(.05, 'white')};
     }
 
     ${ifProp('disabled', `
@@ -53,18 +64,66 @@ const Button = styled.button<Props>`
     ${variant({
     variants: {
         primary: {
-            bg: 'primary',
+            bg: prop('colors.primary', 'white'),
+            color: prop('colors.white', 'black'),
+            '&:hover': {
+                bg: withProp(prop('colors.primary', 'white'), darken(.05)),
+            }
+        },
+        'primary-dark': {
+            bg: 'primary-dark',
             color: 'white',
+            '&:hover': {
+                bg: withProp('colors.primary-dark', darken(.05)),
+            }
         },
         secondary: {
             bg: 'secondary',
-            color: 'white',
+            color: 'black',
+            '&:hover': {
+                bg: withProp('colors.secondary', darken(.05)),
+            }
         },
-        text: {
 
+        'outline-primary': {
+            bg: 'white',
+            color: 'black',
+            '&:hover': {
+                backgroundColor: 'primary',
+                color: 'white',
+            }
+        },
+
+        'outline-primary-dark': {
+            bg: 'white',
+            color: 'black',
+            '&:hover': {
+                backgroundColor: 'primary-dark',
+                color: 'white',
+            }
+        },
+
+        'outline-secondary': {
+            bg: 'white',
+            color: 'black',
+            '&:hover': {
+                backgroundColor: 'secondary',
+                color: 'black',
+            }
+        },
+
+        text: {
             boxShadow: 'none',
+            border: 'none',
             '&:active': {
                 boxShadow: 'none',
+            }
+        },
+        'outline': {
+            boxShadow: '10px 10px 0 0 black',
+            backgroundColor: 'surface',
+            '&::first-letter': {
+                color: 'error'
             }
         }
     }

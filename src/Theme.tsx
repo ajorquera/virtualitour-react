@@ -5,10 +5,10 @@ import { ThemeProvider } from 'styled-components';
 const theme = {
   colors: {
     primary: '#0070f3',
-    'primary-dark': '#0000ff',
-    secondary: '#ff0000',
+    'primary-dark': '#0050B3',
+    secondary: '#FFC700',
     white: '#ffffff',
-    black: '#000000',
+    black: 'black',
     surface: '#ffffff',
     disabled: '#f5f5f5',
     error: '#ff0000',

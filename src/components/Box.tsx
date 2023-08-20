@@ -34,4 +34,5 @@ export interface LayoutProps extends StyledLayoutProps { }
 export const Layout = styled.div<LayoutProps>(layout);
 
 export default Box;
+
 export { Text };

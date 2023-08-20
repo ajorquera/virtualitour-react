@@ -1,4 +1,3 @@
-import { Divider, Typography } from "@mui/material";
 import ContentCard from "../../../components/ContentCard";
 import Form, { FormField } from "../../../components/Form";
 
@@ -28,11 +27,11 @@ const fields: FormField[] = [
 const Profile = () => {
   return (
     <ContentCard title='Perfil' loading>
-      <Typography variant='body1' textAlign="left">
-        Aqui puedes modificar tus datos personales
-      </Typography>
 
-      <Divider sx={{ my: 2 }} />
+      Aqui puedes modificar tus datos personales
+
+
+
 
       <Form fields={fields} />
 

@@ -3,8 +3,8 @@
 // Path: src/components/ContentCard.tsx
 
 import { FC } from "react";
-import { Card, CardContent, Typography } from "@mui/material";
 import CardLoading from "./CardLoading";
+import Card from "./Card";
 
 export interface Props {
     title: string;
@@ -19,12 +19,11 @@ const ContentCard: FC<Props> = ({ title, children, loading }) => {
 
 
         <Card>
-            <CardContent>
-                <Typography variant="h3" component="h3" textAlign="left">
-                    {title}
-                </Typography>
-                {children}
-            </CardContent>
+
+            {title}
+
+            {children}
+
         </Card>
     )
 }

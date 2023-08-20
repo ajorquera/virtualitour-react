@@ -1,6 +1,9 @@
-import { Box, Button, MenuItem, Select, TextField } from '@mui/material';
+
 import React, { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import Box from './Box';
+import TextField from './TextField';
+import Button from './Button/Button';
 
 export interface FormField {
     type: 'text' | 'select';
@@ -19,11 +22,7 @@ const Form: FC<Props> = ({ fields }) => {
     console.log(errors);
 
     return (
-        <Box component="form" sx={
-            {
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }
-        } onSubmit={handleSubmit(onSubmit)}>
+        <Box as="form" onSubmit={handleSubmit(onSubmit)}>
             {fields.map(field => {
                 let Component: any = null;
                 switch (field.type) {
@@ -32,9 +31,7 @@ const Form: FC<Props> = ({ fields }) => {
                         break;
                     case 'select':
                         Component = (props: any) => (<TextField select {...props}>
-                            {field.options?.map(option => (
-                                <MenuItem key={option} value={option}>{option}</MenuItem>
-                            ))}
+
                         </TextField>);
                         break;
                 }
@@ -51,7 +48,7 @@ const Form: FC<Props> = ({ fields }) => {
                 );
             })}
 
-            <Button size='large' variant='contained' type="submit">Save</Button>
+            <Button type="submit">Save</Button>
         </Box>
     )
 }

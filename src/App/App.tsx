@@ -1,6 +1,5 @@
-import { Footer, Header, MenuProps } from '../components';
+import { MenuProps } from '../components';
 
-import Routes from '../Routes';
 
 import './App.css';
 
@@ -9,9 +8,6 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import Theme from '../Theme';
-import { Container } from '@mui/material';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import PermMediaIcon from '@mui/icons-material/PermMedia';
 
 
 import { BrowserRouter, Routes as RouterRoutes, Route, Navigate } from 'react-router-dom';
@@ -21,15 +17,14 @@ import { Plans, Profile } from '../pages/Settings/pages';
 import Settings from '../pages/Settings/Settings';
 import { Login } from '../pages/Login';
 import { AuthProvider } from '../providers/AuthProvider';
-import { signOutUser } from '../services/firebaseApi';
 import Logout from '../components/Logout';
 
 
 
 const menu: MenuProps = {
   links: [
-    { label: 'Crear tour', href: '/tours/create', icon: AddCircleIcon },
-    { label: 'Mis tours', href: '/tours', icon: PermMediaIcon },
+    { label: 'Crear tour', href: '/tours/create' },
+    { label: 'Mis tours', href: '/tours' },
     { label: 'Ajustes', href: '/settings', icon: Settings },
     { label: 'Salir', href: '/logout', icon: Logout, divider: true },
   ]

@@ -1,21 +1,41 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Header from './Button';
+import Button from './Button';
+import { MultipleComponentTemplate, SingleComponentTemplate } from '../../utils/templates';
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-const meta = {
+
+export default {
     title: 'Components/Button',
-    component: Header,
-} satisfies Meta<typeof Header>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Default: Story = {
-    args: {
-        children: 'Button',
-        fullWidth: false,
-
-    }
+    component: Button,
 };
+
+export const Default = {
+    render: MultipleComponentTemplate(Button, [
+        { children: 'Default' },
+        { children: 'Primary', variant: 'primary' },
+        { children: 'Primary Dark', variant: 'primary-dark' },
+        { children: 'Secondary', variant: 'secondary' },
+        { children: 'Outline Primary', variant: 'outline-primary' },
+        { children: 'Outline Primary Dark', variant: 'outline-primary-dark' },
+        { children: 'Outline Secondary', variant: 'outline-secondary' },
+        { children: 'Outline', variant: 'outline' },
+        { children: 'Text', variant: 'text' },
+    ])
+}
+
+export const Circular = MultipleComponentTemplate(Button, [
+    {
+        children: 'Circular',
+    },
+    {
+        variant: 'primary',
+        children: 'Circular',
+    },
+    {
+        variant: 'secondary',
+        children: 'Circular',
+    },
+], {
+    circular: true,
+}
+);

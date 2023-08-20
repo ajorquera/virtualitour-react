@@ -1,6 +1,7 @@
-import { Box, BoxProps } from '@mui/material';
+
 import styled from 'styled-components';
 import { prop, withProp } from 'styled-tools';
+import Box, { BoxProps } from '../Box';
 
 interface CardProps extends BoxProps {
     elevation?: number;

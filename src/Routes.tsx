@@ -1,9 +1,6 @@
-import { BrowserRouter, RouterProvider, createBrowserRouter, redirect, Routes as RouterRoutes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes as RouterRoutes, Route, Navigate } from 'react-router-dom';
 import Settings from './pages/Settings/Settings';
-import { Paper } from '@mui/material';
-import { ReactNode } from 'react';
 import { PUBLIC_URL } from './env';
-import AuthRoute from './components/AuthRoute';
 import { Login } from './pages/Login';
 
 

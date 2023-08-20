@@ -1,8 +1,9 @@
-import { Box } from "@mui/material";
+
 import Card from "../Card";
 import Button from "../Button/Button";
 import styled from "styled-components";
 import { FC } from "react";
+import Box, { Flex } from "../Box";
 
 const Text = styled(Box)``;
 
@@ -37,10 +38,10 @@ const Modal: FC<Props> = ({ title, ...props }) => {
                 Modal content Modal content Modal content Modal content Modal content Modal content Modal content Modal content
             </Box>
 
-            <Box textAlign="right">
+            <Flex justifyContent="right">
                 <Button style={{ marginRight: 10 }}>Cancelar</Button>
-                <Button>Guardar</Button>
-            </Box>
+                <Button variant="primary">Guardar</Button>
+            </Flex>
         </Box>
     </Card>
 }
