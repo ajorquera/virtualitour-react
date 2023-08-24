@@ -3,7 +3,7 @@ import { useAuth } from "../providers/AuthProvider";
 import { useParams } from "react-router-dom";
 
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import Text from "../components/Text";
+import Text from "../components/Text/Text";
 import Box from "../components/Box";
 import Button from "../components/Button/Button";
 

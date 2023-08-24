@@ -13,7 +13,7 @@ import {
     BorderProps,
 } from 'styled-system';
 
-import Text, { Props as TextProps } from './Text'
+import Text, { Props as TextProps } from './Text/Text'
 
 export interface BoxProps extends SpaceProps, BorderProps, LayoutProps { }
 export const Box = styled.div<BoxProps>(space, border, layout);

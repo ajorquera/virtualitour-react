@@ -2,7 +2,7 @@
 import React, { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Box from './Box';
-import TextField from './TextField';
+import TextField from './TextField/TextField';
 import Button from './Button/Button';
 
 export interface FormField {

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Card from './Card';
 import Text, { Heading } from '../Text/Text';
 import Box from '../Box';
-import { MultipleComponentTemplate } from '../../utils/templates';
+import { MultipleComponentTemplate, SingleComponentTemplate } from '../../utils/templates';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -14,7 +14,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const CardTemplate = ({ children, title }: any) => (
+const CardTemplate = ({ children, title, ...props }: any) => (
     <>
         <Heading variant='h3'>
             {title}
@@ -31,14 +31,10 @@ const CardTemplate = ({ children, title }: any) => (
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 
 
-export const Default: Story = {
-    args: {
-        width: '500px',
-        children: <CardTemplate title="Card with message">
-            Here is the content of the card. Here we can put anything we want. An emoji ❤️, a button, a form, etc.
-        </CardTemplate>,
-    },
-};
+export const Default = SingleComponentTemplate(Card, {
+    children: <CardTemplate title="This is the title of the card"> Here is the content of the card. Here we can put anything we want. An emoji ❤️, a button, a form, etc.</CardTemplate>,
+    width: 500
+})
 
 export const WithElevation = MultipleComponentTemplate(Card, [
     {
@@ -60,7 +56,7 @@ export const WithElevation = MultipleComponentTemplate(Card, [
     },
     {
         elevation: 8,
-        children: <CardTemplate title="Elvation 8">Most extreme elevation</CardTemplate>,
+        children: <CardTemplate title="Elevation 8">Most extreme elevation</CardTemplate>,
     },
 ], {
     width: '500px',

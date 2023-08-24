@@ -3,9 +3,11 @@ import { Props as MenuProps } from '../Menu';
 import styled from 'styled-components';
 import logo from '../../assets/logo.png';
 import Box, { Flex } from '../Box';
-import { Heading } from '../Text';
+import Text, { Heading } from '../Text/Text';
 import Button from '../Button/Button';
-
+import { ReactComponent as FaceHushed } from '../../assets/face-hushed.svg';
+import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
+import List from '../List';
 
 export interface Props {
   title: string;
@@ -40,14 +42,29 @@ const Header: FC<Props> = ({ title, ...props }) => {
       <BrandContainer>
         <img src={logo} alt="logo" />
         <Box>
-          <Heading variant="h1">Virtualitour</Heading>
-          <div>Te presentamos </div>
+          <Heading variant="h2">Virtualitour</Heading>
+          <Text>Te presentamos </Text>
         </Box>
       </BrandContainer>
       <Flex alignItems="center">
-        <Button >
-          Entrar ▼
-        </Button>
+        <Popover>
+          <PopoverTrigger>
+            <Button circular>
+              <Flex alignItems="end">
+                <FaceHushed width={25} height={25} />
+                <Text variant='small' ml={1}>▼</Text>
+              </Flex>
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <List
+              onClick={() => { }}
+              items={[
+                { label: 'Perfil' },
+              ]}
+              itemProps={{ onHoverBg: 'secondary', onHoverColor: 'black' }} />
+          </PopoverContent>
+        </Popover>
       </Flex>
     </Container >
   );

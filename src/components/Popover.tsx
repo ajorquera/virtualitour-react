@@ -46,7 +46,7 @@ export function usePopover({
         onOpenChange: setOpen,
         whileElementsMounted: autoUpdate,
         middleware: [
-            offset(5),
+            offset(-2),
             flip({
                 crossAxis: placement.includes("-"),
                 fallbackAxisSideDirection: "end",
@@ -147,15 +147,12 @@ export const PopoverTrigger = React.forwardRef<
     }
 
     return (
-        <button
+        <div
             ref={ref}
-            type="button"
-            // The user can style the trigger based on the state
-            data-state={context.open ? "open" : "closed"}
             {...context.getReferenceProps(props)}
         >
             {children}
-        </button>
+        </div>
     );
 });
 
@@ -170,17 +167,17 @@ export const PopoverContent = React.forwardRef<
 
     return (
         <FloatingPortal>
-            <FloatingFocusManager context={floatingContext} modal={context.modal}>
-                <div
-                    ref={ref}
-                    style={{ ...context.floatingStyles, ...style }}
-                    aria-labelledby={context.labelId}
-                    aria-describedby={context.descriptionId}
-                    {...context.getFloatingProps(props)}
-                >
-                    {props.children}
-                </div>
-            </FloatingFocusManager>
+
+            <div
+                ref={ref}
+                style={{ ...context.floatingStyles, ...style }}
+                aria-labelledby={context.labelId}
+                aria-describedby={context.descriptionId}
+                {...context.getFloatingProps(props)}
+            >
+                {props.children}
+            </div>
+
         </FloatingPortal>
     );
 });

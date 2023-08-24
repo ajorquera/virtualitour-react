@@ -5,7 +5,7 @@ import { ButtonHTMLAttributes } from "react";
 import { darken } from "polished";
 
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     fullWidth?: boolean;
     variant?: 'primary' | 'secondary' | 'text';
     bg?: string;
@@ -14,11 +14,13 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = styled.button<Props>`
-    padding: 8px;
+    padding: 10px;
     background-color: transparent;
     textTransform: uppercase;
+    font-family: ${theme('fonts.body', 'Arial')};
 
-    border-radius: 5px;
+
+    border-radius: 1px;
     border-color: ${theme('colors.black', 'black')};
     border-width: 1px;
     border-style: solid;
@@ -31,7 +33,7 @@ const Button = styled.button<Props>`
 
     ${ifProp('circular', `
         border-radius: 50%;
-        padding: 20px 8px;
+        padding: 13px 8px;
     `)}
     
     ${ifProp('bg', props => `
@@ -47,7 +49,7 @@ const Button = styled.button<Props>`
     }
 
     &:hover {
-        background-color: ${darken(.05, 'white')};
+        background-color: ${darken(.03, 'white')};
     }
 
     ${ifProp('disabled', `
@@ -117,6 +119,9 @@ const Button = styled.button<Props>`
             border: 'none',
             '&:active': {
                 boxShadow: 'none',
+            },
+            '&:hover': {
+                backgroundColor: 'transparent',
             }
         },
         'outline': {

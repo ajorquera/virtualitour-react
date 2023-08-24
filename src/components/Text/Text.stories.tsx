@@ -1,49 +1,53 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import Text, { Heading } from '../Text/Text';
-import Box, { Flex } from '../Box';
-import { MultipleComponentTemplate, SingleComponentTemplate } from '../../utils/templates';
+import React, { FC, PropsWithChildren } from "react";
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-const meta = {
+import Box, { Flex } from "../Box";
+import Text, { Props as TextProps } from "./Text";
+import Theme from "../../Theme";
+
+
+export default {
     title: 'Components/Text',
     component: Text,
-} satisfies Meta<typeof Text>;
+};
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+interface Props extends PropsWithChildren {
+    title: string;
+    variant?: TextProps['variant'];
+    example?: string;
+    titleVariant?: TextProps['variant'];
+}
 
+const TextExample: FC<Props> = ({ title, children, variant, example, titleVariant = 'h2' }) => {
+    return (
+        <Theme>
+            <Flex alignItems="center" >
+                <Box width={400} mr={4}>
+                    <Box>
+                        <Text variant={titleVariant}>{title}</Text>
+                    </Box>
+                    <Box>
+                        <Text>{children}</Text>
+                    </Box>
+                </Box>
 
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-
-
-export const Typography = SingleComponentTemplate(Text, {
-    children: (
-        <Flex flexDirection="column" gap={20}>
-            <Box>
-                <Text variant="h1">Heading 1: </Text>
-                <Text>This heading just removes margins and it uses a span as tag</Text>
-            </Box>
-            <Box>
-                <Text variant="h2">Heading 2: </Text>
-                <Text>This heading just removes margins and it uses a span as tag</Text>
-            </Box>
-            <Box>
-                <Text variant="h3">Heading 3: </Text>
-                <Text>This heading just removes margins and it uses a span as tag</Text>
-            </Box>
-            <Box>
-                <Text>Body: </Text><Text>This is the normal text</Text>
-            </Box>
-            <Box>
-                <Text variant='subtitle'>Small: </Text><Text>This is the normal text</Text>
-            </Box>
-            <Box>
-                <Text variant='subtitle'>Subtitle: </Text><Text>This is the normal text</Text>
-            </Box>
-            <Box>
-                <Text variant='small'>Link: </Text><Text>This is the normal text</Text>
-            </Box>
-        </Flex>
+                {example && <Text variant={variant}>{example}</Text>}
+            </Flex>
+        </Theme>
     )
-});
+}
 
+
+export const Typography = () => {
+    return (
+        <>
+            <TextExample title="Variant" variant="h1" example="Examples" titleVariant="h1"></TextExample>
+            <hr style={{ width: '100%', marginBottom: 20, marginTop: 5 }} />
+            <Flex flexDirection="column" gap={20}>
+                <TextExample title="h1" variant="h1" example="Heading - another">The biggest type of text. Set for page titles mainly</TextExample>
+                <TextExample title="h2" variant="h2" example="Subtitle - Examples - Option A">This variant should be use for subtitles in a page</TextExample>
+                <TextExample title="h3" variant="h3" example="Submenu - Subheader - Fields">Smallest header which may be use for separation of elements in a page, like a fieldset</TextExample>
+                <TextExample title="body" variant="body" example={'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis'}>This is the default text variant for any content in a page</TextExample>
+            </Flex>
+        </>
+    )
+}
