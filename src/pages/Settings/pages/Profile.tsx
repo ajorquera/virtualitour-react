@@ -1,5 +1,6 @@
 import ContentCard from "../../../components/ContentCard";
 import Form, { FormField } from "../../../components/Form";
+import Text, { Heading } from "../../../components/Text";
 
 
 
@@ -19,6 +20,7 @@ const fields: FormField[] = [
   {
     type: 'text',
     name: 'email',
+    disabled: true,
     label: 'Email'
   }
 ]
@@ -26,18 +28,19 @@ const fields: FormField[] = [
 
 const Profile = () => {
   return (
-    <ContentCard title='Perfil' loading>
+    <>
+      <Heading variant="h1">Perfil</Heading>
 
-      Aqui puedes modificar tus datos personales
-
-
-
+      <Text as="p" my={3}>
+        Aqui puedes modificar tus datos personales
+      </Text>
 
       <Form fields={fields} />
 
+    </>
 
 
-    </ContentCard>
+
   );
 };
 

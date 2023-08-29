@@ -7,11 +7,29 @@ import { darken } from "polished";
 
 export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     fullWidth?: boolean;
-    variant?: 'primary' | 'secondary' | 'text';
+    variant?: 'primary' | 'primary-dark' | 'secondary' | 'text';
     bg?: string;
     color?: string;
     circular?: boolean;
+    active?: boolean;
 }
+
+const getDisabled = (props: Props) => ({
+    cursor: ifProp('disabled', 'default', 'pointer')(props),
+    opacity: ifProp('disabled', 0.2)(props),
+    backgroundColor: ifProp('disabled', 'gray')(props),
+    border: ifProp('disabled', 'none')(props),
+    color: ifProp('disabled', 'white')(props),
+    boxShadow: ifProp('disabled', 'none')(props),
+
+    '&:hover': ifProp('disabled', {
+        backgroundColor: 'gray',
+        color: 'white',
+    })(props),
+    '&:active': ifProp('disabled', {
+        boxShadow: 'none',
+    })(props),
+});
 
 const Button = styled.button<Props>`
     padding: 10px;
@@ -45,8 +63,13 @@ const Button = styled.button<Props>`
     `)}
     
     &:active {
-        box-shadow: .2px .2px 0 0 inset black;
+        box-shadow: .5px .5px 0 0 inset black;
     }
+
+    ${ifProp('active', `
+        box-shadow: .5px .5px 0 0 inset black;
+    
+    `)}
 
     &:hover {
         background-color: ${darken(.03, 'white')};
@@ -56,7 +79,7 @@ const Button = styled.button<Props>`
         cursor: default;
         background-color: ${theme('colors.disabled', 'gray')};
         box-shadow: none;
-    
+
 
         &:hover {
             background-color: ${theme('colors.disabled', 'gray')};
@@ -133,6 +156,7 @@ const Button = styled.button<Props>`
         }
     }
 })}
+${getDisabled}
 `
 
 

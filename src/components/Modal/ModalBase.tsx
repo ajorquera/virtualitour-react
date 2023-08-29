@@ -50,8 +50,5 @@ const Modal: FC<PropsWithChildren<{}>> = ({ children }) => {
     )
 }
 
-Modal.defaultProps = {
-    variant: 'primary'
-}
 
 export default Modal;

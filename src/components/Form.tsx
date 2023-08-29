@@ -9,6 +9,7 @@ export interface FormField {
     type: 'text' | 'select';
     name: string;
     label: string;
+    disabled?: boolean;
     options?: string[];
 }
 
@@ -22,7 +23,7 @@ const Form: FC<Props> = ({ fields }) => {
     console.log(errors);
 
     return (
-        <Box as="form" onSubmit={handleSubmit(onSubmit)}>
+        <Box mt={4} as="form" onSubmit={handleSubmit(onSubmit)}>
             {fields.map(field => {
                 let Component: any = null;
                 switch (field.type) {
@@ -37,18 +38,20 @@ const Form: FC<Props> = ({ fields }) => {
                 }
 
                 return (
-                    <div key={field.name}>
+                    <Box my={3} key={field.name}>
                         <Controller
                             name={field.name}
                             control={control}
                             render={({ field: innerField }) => <Component {...field} {...innerField} />}
                         />
 
-                    </div>
+                    </Box>
                 );
             })}
+            <Box mt={4}>
+                <Button variant='primary' type="submit">Save</Button>
 
-            <Button type="submit">Save</Button>
+            </Box>
         </Box>
     )
 }

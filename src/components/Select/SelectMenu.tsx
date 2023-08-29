@@ -29,7 +29,7 @@ const Select: FC<Props> = ({ label, error, options, value, ...props }) => {
     const id = useId();
     const selectRef = useRef<HTMLSelectElement>(null);
     const [isOpen, setIsOpen] = useState(false);
-    const [selected, setSelected] = useState(value);
+    const [selected, setSelected] = useState<string | undefined>(value);
     const selectedOption = useMemo(() => options.find(o => o.value === selected || o.label === selected), [selected, options]);
 
     const selectWidth = useMemo(() => {
@@ -64,7 +64,7 @@ const Select: FC<Props> = ({ label, error, options, value, ...props }) => {
                     </CustomSelect>
                 </PopoverTrigger>
                 <PopoverContent>
-                    <List width={selectWidth} itemProps={{ onHoverBg: 'secondary', onHoverColor: 'black' }} onClick={option => setSelected(option.value || option.label)} items={options as any} />
+                    <List width={selectWidth} itemProps={{ onHoverBg: 'secondary', onHoverColor: 'black' }} onClick={option => setSelected(option.value)} items={options as any} />
                 </PopoverContent>
             </Popover>
             {error && <Text ml={1} mt={1} as="div" color="error" variant="small">{error}</Text>}

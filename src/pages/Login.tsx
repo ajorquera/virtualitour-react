@@ -3,9 +3,10 @@ import { useAuth } from "../providers/AuthProvider";
 import { useParams } from "react-router-dom";
 
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import Text from "../components/Text/Text";
+import Text, { Heading } from "../components/Text/Text";
 import Box from "../components/Box";
 import Button from "../components/Button/Button";
+import TextField from "../components/TextField";
 
 interface IFormInput {
     email: string
@@ -50,22 +51,24 @@ export const Login = () => {
 
     return (
         <>
-            <Text textAlign="center" variant="h2">Login</Text>
+            <Heading variant="h1" textAlign="center">Login</Heading>
 
             <div>
                 <form onSubmit={handleSubmit(onLogin)}>
                     {fields.map((field: any) =>
-                        <Box my={2} key={field.name}>
+                        <Box my={3} key={field.name}>
                             <Controller
 
                                 name={field.name}
                                 control={control}
-                                render={({ field: innerField }) => <input fullWidth {...field} {...innerField} />}
+                                render={({ field: innerField }) => <TextField fullWidth {...field} {...innerField} />}
                             />
                         </Box>
                     )}
 
-                    <Button fullWidth type="submit">LOGIN</Button>
+                    <Box mt={4}>
+                        <Button fullWidth variant="primary-dark" type="submit">LOGIN</Button>
+                    </Box>
                 </form>
             </div>
         </>

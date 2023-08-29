@@ -8,7 +8,7 @@ import Button from "../Button/Button";
 interface Props {
     title: string;
     selected?: boolean;
-    price: number;
+    price?: number;
     features: string[];
     monthly?: boolean;
 }
@@ -18,7 +18,7 @@ const CustomText = styled(Text)`
 `
 
 const Plan: FC<Props> = ({ title, selected, price, features, monthly }) => {
-    const { colors } = useTheme();
+
 
     return (
         <Box>

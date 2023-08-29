@@ -47,6 +47,7 @@ export const Typography = () => {
                 <TextExample title="h2" variant="h2" example="Subtitle - Examples - Option A">This variant should be use for subtitles in a page</TextExample>
                 <TextExample title="h3" variant="h3" example="Submenu - Subheader - Fields">Smallest header which may be use for separation of elements in a page, like a fieldset</TextExample>
                 <TextExample title="body" variant="body" example={'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis'}>This is the default text variant for any content in a page</TextExample>
+                <TextExample title="small" variant="small" example={'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis'}>Small text for notifications or error messages</TextExample>
             </Flex>
         </>
     )

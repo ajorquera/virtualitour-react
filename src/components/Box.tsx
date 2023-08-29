@@ -15,11 +15,13 @@ import {
 
 import Text, { Props as TextProps } from './Text/Text'
 
-export interface BoxProps extends SpaceProps, BorderProps, LayoutProps { }
-export const Box = styled.div<BoxProps>(space, border, layout);
+export interface BoxProps extends SpaceProps, BorderProps, LayoutProps, ColorProps {
+    color?: string
+}
+export const Box = styled.div<BoxProps>(space, border, layout, color);
 export const Span = styled.span<BoxProps>(space, border, layout);
 
-export interface ColorBoxProps extends BoxProps, ColorProps { }
+export interface ColorBoxProps extends BoxProps { }
 export const ColorBox = styled.div<ColorBoxProps>(space, color);
 export interface FlexProps extends FlexboxProps, BoxProps {
     gap?: number | string;

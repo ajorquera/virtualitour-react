@@ -97,7 +97,7 @@ const Switch: React.FC<Props> = ({ error, disabled, label, value, onChange, roun
 
                 </Label>
             </Container>
-            {labelPos === 'right' && <Label style={{ cursor: 'pointer', marginLeft: 3 }} htmlFor={id}>{label}</Label>}
+            {labelPos === 'right' && <Label style={{ cursor: 'pointer', marginLeft: 5 }} htmlFor={id}>{label}</Label>}
 
         </Flex>
     );

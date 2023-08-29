@@ -5,7 +5,7 @@ import Box, { ColorBox, Flex, Text } from "../Box";
 import Button, { Props as ButtonProps } from "../Button/Button";
 import { context } from "./ModalProvider";
 
-interface Props extends PropsWithChildren<{}> {
+interface Props {
     title: string;
     variant?: ButtonProps['variant'];
 }

@@ -9,6 +9,7 @@ interface Props extends BoxProps {
     label?: string;
     height?: number;
     onComplete: () => void;
+    variant?: 'primary' | 'secondary';
 }
 
 const ProgressBar = styled.hr<{ progress?: number }>`
@@ -46,7 +47,7 @@ const Progress: FC<Props> = ({ progress, label, height, timeout, onComplete, var
 
         return () => clearInterval(timeoutId);
 
-    }, [timeout, props.onComplete]);
+    }, [timeout, onComplete]);
 
     useEffect(() => {
         setInnerProgress(progress || 0);

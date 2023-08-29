@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
+import ButtonMenu from './ButtonMenu';
 import Button from './Button';
 import { MultipleComponentTemplate, SingleComponentTemplate } from '../../utils/templates';
 
@@ -20,6 +20,7 @@ export const Default = {
         { children: 'Outline Secondary', variant: 'outline-secondary' },
         { children: 'Outline', variant: 'outline' },
         { children: 'Text', variant: 'text' },
+        { children: 'Disabled', disabled: true },
     ])
 }
 
@@ -39,3 +40,5 @@ export const Circular = MultipleComponentTemplate(Button, [
     circular: true,
 }
 );
+
+export const ButtonIconMenu = SingleComponentTemplate(ButtonMenu, {});

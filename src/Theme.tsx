@@ -10,7 +10,7 @@ export const colors = {
   secondary: '#FFC700',
   white: '#ffffff',
   black: 'black',
-  surface: '#ffffff',
+  surface: '#F1F1F1',
   disabled: '#f5f5f5',
   error: '#ff0000',
 
@@ -21,17 +21,18 @@ export const colors = {
 
 export const fonts = {
   body: '"Press Start 2P"',
-  heading: '"04B_30"',
+  heading: '04B_30',
 };
 
 export const fontSizes: Scale = {
-  ...['0.7rem', '0.9rem', '1rem', '1.2rem', '1.5rem', '2rem', '3rem', '4rem', '5rem', '6rem', '7rem', '8rem', '9rem', '10rem']
+  ...['0.6rem', '0.8rem', '1rem', '1.2rem', '1.5rem', '2rem', '3rem', '4rem', '5rem', '6rem', '7rem', '8rem', '9rem', '10rem']
 }
 
 fontSizes.small = fontSizes[0];
 fontSizes.body = fontSizes[1];
-fontSizes.h1 = fontSizes[2];
-fontSizes.h2 = fontSizes[2];
+fontSizes.h1 = fontSizes[5];
+fontSizes.h2 = fontSizes[4];
+fontSizes.h3 = fontSizes[3];
 fontSizes.button = fontSizes[2];
 
 const GlobalStyles = createGlobalStyle`
@@ -50,6 +51,7 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const theme = {
+  fontSizes,
   fonts,
   colors,
 }

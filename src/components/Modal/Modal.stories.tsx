@@ -12,7 +12,7 @@ import Modal from './Modal';
 const meta = {
     title: 'Components/Modal',
     component: Modal,
-} satisfies Meta<typeof Header>;
+} satisfies Meta<typeof Modal>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

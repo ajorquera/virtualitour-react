@@ -6,7 +6,11 @@ import Footer from "./Footer";
 import { Navigate, Outlet, redirect } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
 import Card from "./Card/Card";
-import Box, { Flex } from "./Box";
+import Box, { Flex, Text } from "./Box";
+import Logo from '../assets/logo.png'
+import { style } from "styled-system";
+import styled from "styled-components";
+import { theme } from "styled-tools";
 
 const menu: any = {
     links: [
@@ -42,13 +46,19 @@ interface LinkProps {
 
 const links: LinkProps[] = [{ label: 'Home', href: '/' }];
 
+const PageContainer = styled.div`
+    padding: 0 20px;
+    background-color: ${theme('colors.surface', 'white')};
+`;
+
+
 const DashboardLayout: FC<{}> = () => {
     const { user, isLoading } = useAuth();
     if (isLoading) return null
 
     if (!user) return <Navigate to='/login' />
 
-    return (<>
+    return (<Box bg="surface" height="100vh">
         <Header
             title='Virtualitour'
             logo='./logo.svg'
@@ -57,10 +67,13 @@ const DashboardLayout: FC<{}> = () => {
             menu={menu}
         />
 
-        <Outlet />
+        <PageContainer>
+            <Outlet />
 
-        <Footer />
-    </>)
+            <Footer />
+
+        </PageContainer>
+    </Box>)
 };
 
 export const AccessLayout = () => {
@@ -69,10 +82,18 @@ export const AccessLayout = () => {
     if (!isLoading && user) return <Navigate to='/' />
 
     return (
-        <Flex justifyContent="center">
-            <Card>
-                <Outlet />
-            </Card>
+        <Flex justifyContent="center" alignItems="center" height="100vh" bg="surface" >
+            <Box>
+                <Box mb={3}>
+
+                    <img width={300} src={Logo} alt="Virtualitour" />
+                    <Text textAlign="center" as="div" variant="h1">Virtualitour</Text>
+
+                </Box>
+                <Card elevation={5} p={4}>
+                    <Outlet />
+                </Card>
+            </Box>
         </Flex>
     )
 }

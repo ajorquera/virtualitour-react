@@ -14,6 +14,7 @@ interface ListItemProps {
     disabled?: boolean;
     bg?: string;
     onHoverBg?: string;
+    onHoverColor?: string;
     clickable?: boolean;
 }
 
@@ -28,7 +29,7 @@ export const ListItem = styled(Box) <ListItemProps>`
         cursor: pointer;
     `)}
 
-    padding: 5px; 
+    padding: 10px; 
     border-style: solid;
     border-color: ${theme('colors.black')};
     border-width: 2px;
@@ -45,7 +46,7 @@ interface Item {
     label: string;
     disabled?: boolean;
     bg?: string;
-    [key: string]: string | boolean | undefined;
+    [key: string]: any;
 }
 
 export interface Props extends Omit<BoxProps, 'children'> {

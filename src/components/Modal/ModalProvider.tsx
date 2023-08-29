@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import React, { FC, PropsWithChildren, ReactNode, createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import ModalBase from "./ModalBase";
 
@@ -12,7 +12,7 @@ export const context = createContext<Opts>({});
 
 
 
-const DialogProvider = ({ children }) => {
+const DialogProvider: FC<PropsWithChildren> = ({ children }) => {
     const [isOpenModal, setIsOpenModal] = useState(false);
     const modalRef = useRef<ReactNode>(null);
 
@@ -39,14 +39,14 @@ const DialogProvider = ({ children }) => {
 
 interface HookProps {
     open: () => void;
-    close: () => void;
-    isOpenModal: boolean;
+    close?: (() => void);
+    isOpenModal?: boolean;
 }
 
 export const useModal = (component: ReactNode): HookProps => {
     const { openModal, closeModal, isOpenModal } = useContext(context);
 
-    const open = useCallback(() => openModal(component), [component]);
+    const open = useCallback(() => openModal && openModal(component), [component]);
 
     return { open, close: closeModal, isOpenModal };
 };

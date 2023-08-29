@@ -20,11 +20,16 @@ const Text = styled.span<Props>(compose(typography, color, space), variant({
             fontFamily: 'heading'
         },
         body: {
-            fontSize: '.7rem',
+            fontSize: '.8rem',
         },
         small: {
-            fontSize: '.5rem',
+            fontSize: '.6rem',
         },
+        link: {
+            fontSize: '.8rem',
+            textDecoration: 'underline',
+            color: 'black'
+        }
     }
 }));
 

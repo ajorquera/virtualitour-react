@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }: any) => {
     useEffect(() => {
         getMyUser().then((user) => {
             setUser(user);
-            console.log(user)
+
 
         }).finally(() => setIsloading(false));
     }, []);
