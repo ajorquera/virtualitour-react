@@ -1,21 +1,26 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { ifProp, prop, theme, withProp } from "styled-tools";
+import { ifProp, theme, withProp } from "styled-tools";
 import Box, { BoxProps, Text } from "../Box";
 
 export const List = styled(Box)`
     list-style: none;
     padding: 0;
     margin: 0;
-`;
+` as any;
 
-interface ListItemProps {
+List.defaultProps = {
+    as: 'ul'
+}
+
+interface ListItemProps extends BoxProps {
     last?: boolean;
     disabled?: boolean;
     bg?: string;
     onHoverBg?: string;
     onHoverColor?: string;
     clickable?: boolean;
+    color?: string;
 }
 
 export const ListItem = styled(Box) <ListItemProps>`
@@ -40,7 +45,12 @@ export const ListItem = styled(Box) <ListItemProps>`
         background-color: ${withProp('onHoverBg', color => theme(`colors.${color}`, color || 'black'))};
         color: ${withProp('onHoverColor', color => theme(`colors.${color}`, color || 'white'))};
     }
-`;
+` as any;
+
+ListItem.defaultProps = {
+    as: 'li'
+}
+
 
 interface Item {
     label: string;
@@ -49,18 +59,17 @@ interface Item {
     [key: string]: any;
 }
 
-export interface Props extends Omit<BoxProps, 'children'> {
+export interface Props extends BoxProps {
     items: Item[];
     onClick?: (item: Item) => void;
     itemProps?: ListItemProps;
-}
+};
 
 const Component: FC<Props> = ({ items, onClick, itemProps, ...props }) => {
     return (
-        <List as="ul" {...props}>
+        <List {...props}>
             {items && items.map((item, index) => (
                 <ListItem
-                    as="li"
                     clickable={Boolean(!item.disabled && onClick)}
                     last={index === items.length - 1}
                     key={index}

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import ButtonMenu from './ButtonMenu';
 import Button from './Button';
 import { MultipleComponentTemplate, SingleComponentTemplate } from '../../utils/templates';
+import { AbortedDeferredError } from 'react-router-dom';
 
 
 export default {
@@ -41,4 +42,10 @@ export const Circular = MultipleComponentTemplate(Button, [
 }
 );
 
-export const ButtonIconMenu = SingleComponentTemplate(ButtonMenu, {});
+export const ButtonIconMenu = SingleComponentTemplate(ButtonMenu, {
+    items: [
+        { label: 'First item' },
+        { label: 'Second item' },
+        { label: 'Third item' },
+    ]
+});

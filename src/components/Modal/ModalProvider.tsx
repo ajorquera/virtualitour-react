@@ -14,7 +14,7 @@ export const context = createContext<Opts>({});
 
 const DialogProvider: FC<PropsWithChildren> = ({ children }) => {
     const [isOpenModal, setIsOpenModal] = useState(false);
-    const modalRef = useRef<ReactNode>(null);
+    const modalRef = useRef<any>();
 
     const openModal = (component: ReactNode) => {
         modalRef.current = component;

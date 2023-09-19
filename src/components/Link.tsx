@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export interface Props {
-  label: string;
   href: string;
   children: React.ReactNode;
 }

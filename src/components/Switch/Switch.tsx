@@ -1,11 +1,10 @@
 // create a react switch component
 
-import React, { ChangeEvent, useCallback, useId, useState } from 'react';
-import Box, { Flex, Text } from '../Box';
+import React, { ChangeEvent, useId, useState } from 'react';
+import { Flex } from '../Box';
 
 import styled from 'styled-components';
 import { ifProp, theme } from 'styled-tools';
-import { variant } from 'styled-system';
 
 const Label = styled.label``;
 
@@ -78,26 +77,29 @@ const Switch: React.FC<Props> = ({ error, disabled, label, value, onChange, roun
 
     return (
         <Flex alignItems="center">
-            {labelPos === 'left' && <Label style={{ color: disabled ? 'gray' : 'black', cursor: disabled ? 'default' : 'pointer', marginRight: 3 }} htmlFor={id}>{label}</Label>}
+            <>
+                {labelPos === 'left' && <Label style={{ color: disabled ? 'gray' : 'black', cursor: disabled ? 'default' : 'pointer', marginRight: 3 }} htmlFor={id}>{label}</Label>}
 
-            <Container>
-                <Label htmlFor={id}>
-                    <input
-                        style={{ opacity: 0, width: 0, height: 0 }}
-                        {...props}
-                        checked={innerValue}
-                        disabled={disabled}
-                        value={String(innerValue)}
-                        type="checkbox"
-                        onChange={onChangeInput}
-                        id={id}
-                    />
+                <Container>
+                    <Label htmlFor={id}>
+                        <input
+                            style={{ opacity: 0, width: 0, height: 0 }}
+                            {...props}
+                            checked={innerValue}
+                            disabled={disabled}
+                            value={String(innerValue)}
+                            type="checkbox"
+                            onChange={onChangeInput}
+                            id={id}
+                        />
 
-                    <CustomSwitch disabled={disabled} checked={innerValue} rounded={rounded} variant={variant} />
+                        <CustomSwitch disabled={disabled} checked={innerValue} rounded={rounded} variant={variant} />
 
-                </Label>
-            </Container>
-            {labelPos === 'right' && <Label style={{ cursor: 'pointer', marginLeft: 5 }} htmlFor={id}>{label}</Label>}
+                    </Label>
+                </Container>
+                {labelPos === 'right' && <Label style={{ cursor: 'pointer', marginLeft: 5 }} htmlFor={id}>{label}</Label>}
+
+            </>
 
         </Flex>
     );

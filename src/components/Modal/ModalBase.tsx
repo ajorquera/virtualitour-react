@@ -35,17 +35,21 @@ const Overlay = styled.div`
     background-color: rgba(0,0,0,0.5);
 `;
 
+interface Props {
+    children: JSX.Element | JSX.Element[];
+}
 
-
-const Modal: FC<PropsWithChildren<{}>> = ({ children }) => {
+const Modal: FC<Props> = ({ children }) => {
     const { closeModal } = useContext(context);
 
     return (
         <Flex justifyContent="center" alignItems="center" height="100vh">
-            <Overlay onClick={closeModal} />
-            <Box style={{ zIndex: 1001 }} >
-                {children}
-            </Box>
+            <>
+                <Overlay onClick={closeModal} />
+                <Box style={{ zIndex: 1001 }} >
+                    {children}
+                </Box>
+            </>
         </Flex >
     )
 }

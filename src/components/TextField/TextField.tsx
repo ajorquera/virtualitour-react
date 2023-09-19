@@ -1,7 +1,7 @@
-import React, { FC, HTMLAttributes, InputHTMLAttributes, useId } from "react";
+import React, { FC, InputHTMLAttributes, useId } from "react";
 import { Span, Text } from "../Box";
 import styled from "styled-components";
-import { ifProp, prop, theme } from "styled-tools";
+import { ifProp, theme } from "styled-tools";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
@@ -35,13 +35,15 @@ const TextField: FC<Props> = ({ label, error, fullWidth, ...props }) => {
     const id = useId();
     return (
         <Span >
-            <Text mb={1} variant="small" style={{ display: 'block', width: fullWidth ? '100%' : undefined }} as="label" htmlFor={id}>{label}</Text>
-            <Input
-                error={error}
-                id={id}
-                {...props}
-            />
-            {error && <Text ml={1} mt={1} as="div" color="error" variant="small">{error}</Text>}
+            <>
+                <Text mb={1} variant="small" style={{ display: 'block', width: fullWidth ? '100%' : undefined }} as="label" htmlFor={id}>{label}</Text>
+                <Input
+                    error={error}
+                    id={id}
+                    {...props}
+                />
+                {error && <Text ml={1} mt={1} as="div" color="error" variant="small">{error}</Text>}
+            </>
         </Span>
     );
 }

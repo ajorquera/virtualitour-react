@@ -20,13 +20,16 @@ const Select: FC<Props> = ({ label, error, options, ...props }) => {
 
     return (
         <Box display="inline-block">
-            {label && <Text mb={1} variant="small" style={{ display: 'block' }} as="label" htmlFor={id}>{label}</Text>}
-            <CustomSelect id={id} {...props}>
-                {options.map(option => (
-                    <Option value={option.value}>{option.label}</Option>
-                ))}
-            </CustomSelect>
-            {error && <Text ml={1} mt={1} as="div" color="error" variant="small">{error}</Text>}
+            <>
+
+                {label && <Text mb={1} variant="small" style={{ display: 'block' }} as="label" htmlFor={id}>{label}</Text>}
+                <CustomSelect id={id} {...props}>
+                    {options.map(option => (
+                        <Option value={option.value}>{option.label}</Option>
+                    ))}
+                </CustomSelect>
+                {error && <Text ml={1} mt={1} as="div" color="error" variant="small">{error}</Text>}
+            </>
         </Box>
     )
 };

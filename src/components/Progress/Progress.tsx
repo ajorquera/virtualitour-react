@@ -56,10 +56,13 @@ const Progress: FC<Props> = ({ progress, label, height, timeout, onComplete, var
 
     return (
         <Box>
-            {label && <Text textAlign="center" variant="h2" as="div">{label}</Text>}
-            <Box {...props} borderRadius={10} border="solid 5px black" p={2}>
-                <Line height={height} width={innerProgress} variant={variant} />
-            </Box >
+            <>
+                {label && <Text textAlign="center" variant="h2" as="div">{label}</Text>}
+                <Box borderRadius={10} border="solid 5px black" p={2}>
+                    <Line height={height} width={innerProgress} variant={variant} />
+                </Box >
+
+            </>
         </Box>
     );
 };

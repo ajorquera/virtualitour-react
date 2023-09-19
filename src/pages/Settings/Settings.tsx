@@ -1,21 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import MenuCard from '../../components/MenuCard';
 import Box, { Flex, Text } from '../../components/Box';
 import Card from '../../components/Card';
 import { Heading } from '../../components/Text';
-
-
-const menu = {
-  title: 'Ajustes',
-  subItems: [
-    { label: 'Perfil', path: '/settings/profile' },
-    { label: 'Planes', path: '/settings/plans' }
-  ]
-};
+import { Link } from '../../components';
 
 const links = [
-  { label: 'Profile', href: 'profile' },
-  { label: 'Plans', href: 'plans' },
+  { label: 'Perfil', href: 'profile' },
+  { label: 'Planes', href: 'plans' },
 ]
 
 const Settings = () => {
@@ -26,7 +17,12 @@ const Settings = () => {
         <ul>
           {links.map((link, index) => (
             <Box as="li" my={2}>
-              <Text as="a" variant='link' href={link.href} key={index}>{link.label}</Text>
+              <Link href={link.href}>
+                <Text variant='link' key={index}>
+
+                  {link.label}
+                </Text>
+              </Link>
             </Box>
           ))}
         </ul>

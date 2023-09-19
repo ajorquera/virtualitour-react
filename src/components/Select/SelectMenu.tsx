@@ -55,19 +55,22 @@ const Select: FC<Props> = ({ label, error, options, value, ...props }) => {
 
     return (
         <Box display="inline-block">
-            {label && <Text mb={1} variant="small" style={{ display: 'block' }} as="label" htmlFor={id}>{label}</Text>}
-            <Popover placement="bottom-start" open={isOpen}>
-                <PopoverTrigger>
-                    <CustomSelect ref={selectRef} onClick={onClickSelect} id={id} {...props}>
-                        <Text>{selectedOption?.label}</Text>
-                        <Text>{isOpen ? '▲' : '▼'}</Text>
-                    </CustomSelect>
-                </PopoverTrigger>
-                <PopoverContent>
-                    <List width={selectWidth} itemProps={{ onHoverBg: 'secondary', onHoverColor: 'black' }} onClick={option => setSelected(option.value)} items={options as any} />
-                </PopoverContent>
-            </Popover>
-            {error && <Text ml={1} mt={1} as="div" color="error" variant="small">{error}</Text>}
+            <>
+                {label && <Text mb={1} variant="small" style={{ display: 'block' }} as="label" htmlFor={id}>{label}</Text>}
+                <Popover placement="bottom-start" open={isOpen}>
+                    <PopoverTrigger>
+                        <CustomSelect ref={selectRef} onClick={onClickSelect} id={id} {...props}>
+                            <Text>{selectedOption?.label}</Text>
+                            <Text>{isOpen ? '▲' : '▼'}</Text>
+                        </CustomSelect>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                        <List width={selectWidth} itemProps={{ onHoverBg: 'secondary', onHoverColor: 'black' }} onClick={option => setSelected(option.value)} items={options as any} />
+                    </PopoverContent>
+                </Popover>
+                {error && <Text ml={1} mt={1} as="div" color="error" variant="small">{error}</Text>}
+
+            </>
         </Box>
     )
 };

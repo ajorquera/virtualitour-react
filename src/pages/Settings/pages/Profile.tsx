@@ -1,5 +1,5 @@
-import ContentCard from "../../../components/ContentCard";
 import Form, { FormField } from "../../../components/Form";
+import ImageUpload from "../../../components/ImageUpload/ImageUpload";
 import Text, { Heading } from "../../../components/Text";
 
 
@@ -22,7 +22,12 @@ const fields: FormField[] = [
     name: 'email',
     disabled: true,
     label: 'Email'
-  }
+  },
+  {
+    type: 'image-upload',
+    name: 'profilePicture',
+    label: 'Logo'
+  },
 ]
 
 

@@ -21,16 +21,18 @@ const TextExample: FC<Props> = ({ title, children, variant, example, titleVarian
     return (
         <Theme>
             <Flex alignItems="center" >
-                <Box width={400} mr={4}>
-                    <Box>
-                        <Text variant={titleVariant}>{title}</Text>
+                <>
+                    <Box width={400} mr={4}>
+                        <Box>
+                            <Text variant={titleVariant}>{title}</Text>
+                        </Box>
+                        <Box>
+                            <Text>{children}</Text>
+                        </Box>
                     </Box>
-                    <Box>
-                        <Text>{children}</Text>
-                    </Box>
-                </Box>
 
-                {example && <Text variant={variant}>{example}</Text>}
+                    {example && <Text variant={variant}>{example}</Text>}
+                </>
             </Flex>
         </Theme>
     )

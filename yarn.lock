@@ -5170,6 +5170,13 @@
   dependencies:
     csstype "^3.0.2"
 
+"@types/styled-system__core@^5.1.3":
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/@types/styled-system__core/-/styled-system__core-5.1.3.tgz#a7e5afa44ed0616d721d80775f5abbf8fe856450"
+  integrity sha512-HTs1zG0ucWQgGsuHhXMjHBE/cPtqGfWUXpDCy7YNyjj4b8IqGlTH9Iy1tORCFJ3JujwfzGUKtGhH+rUXG8EXdA==
+  dependencies:
+    csstype "^3.0.2"
+
 "@types/testing-library__jest-dom@^5.9.1":
   version "5.14.5"
   resolved "https://registry.yarnpkg.com/@types/testing-library__jest-dom/-/testing-library__jest-dom-5.14.5.tgz#d113709c90b3c75fdb127ec338dad7d5f86c974f"

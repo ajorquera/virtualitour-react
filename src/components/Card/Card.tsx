@@ -1,7 +1,7 @@
 
 import styled from 'styled-components';
 import { prop, withProp } from 'styled-tools';
-import Box, { BoxProps } from '../Box';
+import Box, { BoxProps } from '../Box/Box';
 
 interface CardProps extends BoxProps {
     elevation?: number;

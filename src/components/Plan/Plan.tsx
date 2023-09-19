@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Box, { ColorBox, Text } from "../Box";
+import Box, { Text } from "../Box";
 import styled, { useTheme } from "styled-components";
 import Card from "../Card";
 import { Heading } from "../Text";
@@ -22,13 +22,13 @@ const Plan: FC<Props> = ({ title, selected, price, features, monthly }) => {
 
     return (
         <Box>
-            <ColorBox border="2px solid black" style={{ width: '60%', border: '3px solid black', borderBottomWidth: 0, opacity: selected ? 1 : 0 }} margin="auto" p={2} bg="secondary" >
+            <Box border="2px solid black" style={{ width: '60%', border: '3px solid black', borderBottomWidth: 0, opacity: selected ? 1 : 0 }} margin="auto" p={2} bg="secondary" >
                 <Heading textAlign="center" variant="h3">Seleccionado</Heading>
-            </ColorBox>
+            </Box>
             <Card width={400} p={0}>
-                <ColorBox p={3} bg="black" >
+                <Box p={3} bg="black" >
                     <Text color="white" variant="h3">{title}</Text>
-                </ColorBox>
+                </Box>
                 <Box p={3}>
                     <CustomText as="div" textAlign="center" color="success" variant="h1">
                         {price ? `${price}€/${monthly ? 'Mes' : 'Ano'}` : 'Gratis'}

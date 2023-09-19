@@ -1,9 +1,9 @@
 // write a firebase auth provider
 
-import React, { useState, useEffect, useContext, createContext, Provider, useCallback } from "react";
-import { auth } from '../services/firebase';
+import React, { useState, useEffect, useContext, createContext, useCallback } from "react";
 import { User } from "firebase/auth";
 import { getMyUser, signInWithEmailPassword, signOutUser } from "../services/firebaseApi";
+import LoadingScreen from "../pages/LoadingScreen";
 
 interface AuthContextInterface {
     user: User | null;
@@ -15,20 +15,30 @@ interface AuthContextInterface {
 // create a context
 const AuthContext = createContext<AuthContextInterface>({ user: null });
 
+const FAKE_LOADING_TIME = 2000;
+
 // create a provider
 export const AuthProvider = ({ children }: any) => {
     const [user, setUser] = useState<any>(null);
-    const [isLoading, setIsloading] = useState(true);
+    const [isLoadingUser, setIsloading] = useState(false);
+    const [isFakeLoading, setIsFakeloading] = useState(true);
 
     useEffect(() => {
+        setIsloading(true);
         getMyUser().then((user) => {
             setUser(user);
-
-
         }).finally(() => setIsloading(false));
     }, []);
 
+    useEffect(() => {
+        setTimeout(() => {
+            setIsFakeloading(false);
+        }, FAKE_LOADING_TIME);
+    }, []);
+
     const loginWithCredentials = useCallback(signInWithEmailPassword, []);
+
+    const isLoading = isLoadingUser || isFakeLoading;
 
 
     const signOut = useCallback(async () => {
@@ -37,7 +47,7 @@ export const AuthProvider = ({ children }: any) => {
     }, []);
     return (
         <AuthContext.Provider value={{ user, loginWithCredentials, isLoading, signOut }}>
-            {children}
+            {isLoading ? <LoadingScreen /> : children}
         </AuthContext.Provider>
     );
 };

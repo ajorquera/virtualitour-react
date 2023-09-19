@@ -1,12 +1,14 @@
 
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Box from './Box';
 import TextField from './TextField/TextField';
 import Button from './Button/Button';
+import ImageUpload from './ImageUpload/ImageUpload';
+import { Heading } from './Text';
 
 export interface FormField {
-    type: 'text' | 'select';
+    type: 'text' | 'select' | 'image-upload';
     name: string;
     label: string;
     disabled?: boolean;
@@ -15,9 +17,10 @@ export interface FormField {
 
 export interface Props {
     fields: FormField[];
+    footer?: ReactNode
 }
 
-const Form: FC<Props> = ({ fields }) => {
+const Form: FC<Props> = ({ fields, footer }) => {
     const { control, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = (data: any) => console.log(data);
     console.log(errors);
@@ -35,6 +38,15 @@ const Form: FC<Props> = ({ fields }) => {
 
                         </TextField>);
                         break;
+
+                    case 'image-upload':
+                        Component = (props: any) => (
+                            <>
+                                <Heading style={{ marginBottom: 10, marginTop: 40 }} variant="h3">{field.label}</Heading>
+                                <ImageUpload />
+                            </>
+                        );
+                        break;
                 }
 
                 return (
@@ -48,6 +60,9 @@ const Form: FC<Props> = ({ fields }) => {
                     </Box>
                 );
             })}
+
+            {footer}
+
             <Box mt={4}>
                 <Button variant='primary' type="submit">Save</Button>
 
