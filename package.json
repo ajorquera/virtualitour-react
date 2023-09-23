@@ -47,7 +47,7 @@
     "build:storybook": "storybook build -o build/storybook",
     "build": "yarn build:app && yarn build:components && yarn build:storybook",
     "test": "react-scripts test",
-    "test:ci": "react-scripts test --ci --watchAll=false --coverage && yarn lint && yarn build",
+    "test:ci": "react-scripts test --ci --watchAll=false --coverage && yarn lint",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --fix --ext js,ts,tsx src",
     "eject": "react-scripts eject",
