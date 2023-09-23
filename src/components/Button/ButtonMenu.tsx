@@ -3,8 +3,8 @@ import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
 import Button from './Button';
 import Box, { Flex, Text } from '../Box';
 import List, { Props as ListProps } from '../List';
-import { ReactComponent as FaceHushed } from '../../assets/face-hushed.svg';
-import { ReactComponent as FaceFearful } from '../../assets/face-fearful.svg';
+import FaceHushed from '../../assets/face-hushed.svg';
+import FaceFearful from '../../assets/face-fearful.svg';
 
 export interface Props {
     items: ListProps['items'];
@@ -32,7 +32,7 @@ const ButtonMenu: FC<Props> = ({ items, ...props }) => {
 
                     <Button active={open} circular onClick={onClick}>
                         <Flex alignItems="end">
-                            {!open ? <FaceFearful width={25} height={25} /> : <FaceHushed width={25} height={25} />}
+                            {!open ? <FaceFearful /> : <FaceHushed />}
                             <Text variant='small' ml={1}>▼</Text>
                         </Flex>
                     </Button>

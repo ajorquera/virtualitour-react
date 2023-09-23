@@ -6,3 +6,5 @@ export type { Props as LinkProps } from './Link';
 
 export { default as Menu } from './Menu';
 export type { Props as MenuProps } from './Menu';
+
+export default {};
